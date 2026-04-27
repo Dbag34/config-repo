@@ -1,10 +1,10 @@
 resources:
-  - ../../base/my-service
+  - ../../base/voice-bot
 
 patches:
   - target:
       kind: Deployment
-      name: my-service
+      name: voice-bot
     patch: |-
       - op: replace
         path: /spec/replicas

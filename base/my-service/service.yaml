@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-service
+  name: voice-bot
 spec:
   selector:
-    app: my-service
+    app: voice-bot
   ports:
     - port: 80
       targetPort: 80
