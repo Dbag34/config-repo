@@ -1,25 +1,52 @@
 apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: ApplicationSet
 metadata:
   name: my-service
   namespace: argocd
 
 spec:
-  project: default
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
 
-  source:
-    repoURL: https://github.com/Dbag34/config-repo.git
-    targetRevision: main
-    path: manifests/my-service
+  generators:
+    - list:
+        elements:
+          - env: dev
+            namespace: my-service-dev
+            path: overlays/dev
 
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: my-service
+          - env: uat
+            namespace: my-service-uat
+            path: overlays/uat
 
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+          - env: cug
+            namespace: my-service-cug
+            path: overlays/cug
 
-    syncOptions:
-      - CreateNamespace=true
+          - env: prod
+            namespace: my-service-prod
+            path: overlays/prod
+
+  template:
+    metadata:
+      name: my-service-{{.env}}
+
+    spec:
+      project: default
+
+      source:
+        repoURL: https://github.com/Dbag34/config-repo.git
+        targetRevision: main
+        path: "{{.path}}"
+
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "{{.namespace}}"
+
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+
+        syncOptions:
+          - CreateNamespace=true

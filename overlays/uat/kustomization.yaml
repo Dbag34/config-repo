@@ -1,0 +1,11 @@
+resources:
+  - ../../base/my-service
+
+patches:
+  - target:
+      kind: Deployment
+      name: my-service
+    patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 2
