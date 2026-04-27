@@ -12,20 +12,9 @@ spec:
     - list:
         elements:
           - env: dev
-            namespace: my-service-dev
-            path: overlays/dev
-
           - env: uat
-            namespace: my-service-uat
-            path: overlays/uat
-
           - env: cug
-            namespace: my-service-cug
-            path: overlays/cug
-
           - env: prod
-            namespace: my-service-prod
-            path: overlays/prod
 
   template:
     metadata:
@@ -37,11 +26,11 @@ spec:
       source:
         repoURL: https://github.com/Dbag34/config-repo.git
         targetRevision: main
-        path: "{{.path}}"
+        path: overlays/{{.env}}
 
       destination:
         server: https://kubernetes.default.svc
-        namespace: "{{.namespace}}"
+        namespace: my-service-{{.env}}
 
       syncPolicy:
         automated:
