@@ -19,7 +19,7 @@ spec:
                 - env: prod
           - list:
               elements:
-                - cluster: cluster-1
+                - cluster: west-us2
                   serverURL: https://kubernetes.default.svc
 
   template:
