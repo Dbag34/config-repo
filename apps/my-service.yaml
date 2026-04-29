@@ -9,16 +9,22 @@ spec:
   goTemplateOptions: ["missingkey=error"]
 
   generators:
-    - list:
-        elements:
-          - env: dev
-          - env: uat
-          - env: cug
-          - env: prod
+    - matrix:
+        generators:
+          - list:
+              elements:
+                - env: dev
+                - env: uat
+                - env: cug
+                - env: prod
+          - list:
+              elements:
+                - cluster: cluster-1
+                  serverURL: https://kubernetes.default.svc
 
   template:
     metadata:
-      name: voice-bot-{{.env}}
+      name: voice-bot-{{.env}}-{{.cluster}}
 
     spec:
       project: default
@@ -29,7 +35,7 @@ spec:
         path: overlays/{{.env}}
 
       destination:
-        server: https://kubernetes.default.svc
+        server: "{{.serverURL}}"
         namespace: voice-bot-{{.env}}
 
       syncPolicy:
