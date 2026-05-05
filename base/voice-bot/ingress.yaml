@@ -1,18 +1,18 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: voice-bot-ingress
+  apiVersion: networking.k8s.io/v1
+  kind: Ingress
+  metadata:
+    name: voice-bot-ingress
 
-spec:
-  ingressClassName: nginx
-  rules:
-    - host: voice-bot.example.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: voice-bot-stable
-                port:
-                  number: 80
+  spec:
+    ingressClassName: nginx
+    rules:
+      - host: voice-bot.example.com
+        http:
+          paths:
+            - path: /
+              pathType: Prefix
+              backend:
+                service:
+                  name: voice-bot-stable
+                  port:
+                    number: 80
