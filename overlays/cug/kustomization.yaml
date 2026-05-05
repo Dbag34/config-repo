@@ -3,7 +3,7 @@ resources:
 
 patches:
   - target:
-      kind: Deployment
+      kind: Rollout
       name: voice-bot
     patch: |-
       - op: replace
