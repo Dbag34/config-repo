@@ -24,6 +24,7 @@ spec:
     metadata:
       labels:
         app: voice-bot
+        version: stable
     spec:
       containers:
         - name: voice-bot
