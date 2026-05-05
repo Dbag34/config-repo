@@ -21,6 +21,8 @@ spec:
               elements:
                 - cluster: west-us2
                   serverURL: https://kubernetes.default.svc
+                - cluster: east-us2
+                  serverURL:
 
   template:
     metadata:
