@@ -5,6 +5,7 @@ metadata:
 spec:
   replicas: 3
   revisionHistoryLimit: 3
+
   strategy:
     canary:
       steps:
@@ -13,22 +14,27 @@ spec:
         - setWeight: 50
         - pause: {}
         - setWeight: 100
+
       canaryService: voice-bot-canary
       stableService: voice-bot-stable
+
       trafficRouting:
         nginx:
           stableIngress: voice-bot-ingress
+
   selector:
     matchLabels:
       app: voice-bot
+
   template:
     metadata:
       labels:
-        app: voice-bot 
-    spec:  
+        app: voice-bot
+
+    spec:
       containers:
         - name: voice-bot
-          image: nginx:1.25
+          image: argoproj/rollouts-demo:blue
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 80
+            - containerPort: 8080
