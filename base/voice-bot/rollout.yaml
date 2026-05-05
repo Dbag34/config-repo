@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
         - name: voice-bot
-          image: argoproj/rollouts-demo:blue
+          image: argoproj/rollouts-demo:green
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
