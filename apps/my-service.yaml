@@ -14,15 +14,11 @@ spec:
           - list:
               elements:
                 - env: dev
-                - env: uat
-                - env: cug
                 - env: prod
           - list:
               elements:
                 - cluster: west-us2
                   serverURL: https://kubernetes.default.svc
-                - cluster: east-us2
-                  serverURL:
 
   template:
     metadata:
