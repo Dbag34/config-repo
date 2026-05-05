@@ -15,9 +15,9 @@ spec:
         - setWeight: 100
       canaryService: voice-bot-canary
       stableService: voice-bot-stable
-      trafficRouting:
-        nginx:
-          stableIngress: voice-bot-ingress
+      # trafficRouting:
+      #   nginx:
+      #     stableIngress: voice-bot-ingress
   selector:
     matchLabels:
       app: voice-bot
