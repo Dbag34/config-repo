@@ -23,7 +23,8 @@ spec:
   template:
     metadata:
       labels:
-        app: voice-bot   
+        app: voice-bot 
+    spec:  
       containers:
         - name: voice-bot
           image: nginx:1.25
