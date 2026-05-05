@@ -9,3 +9,10 @@ patches:
       - op: replace
         path: /spec/replicas
         value: 3
+  - target:
+      kind: Ingress
+      name: voice-bot-ingress
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: voice-bot-prod.example.com
