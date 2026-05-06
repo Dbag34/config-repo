@@ -11,7 +11,7 @@ patches:
         value: 2
       - op: replace
         path: /spec/template/spec/containers/0/image
-        value: dbag34/voice-bot-rollout:green
+        value: dbag34/voice-bot-rollout:blue
   - target:
       kind: Ingress
       name: voice-bot-ingress
